@@ -1,0 +1,26 @@
+.content-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.svg-container {
+  flex: 1 1 auto;
+  max-width: 75%;
+}
+
+.country-details {
+  flex: 1 1 300px;
+  max-width: 25%;
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+svg {
+  width: 100%;
+  height: auto;
+}

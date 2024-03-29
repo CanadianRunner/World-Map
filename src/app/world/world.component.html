@@ -1,9 +1,12 @@
-<div #svgContainer [innerHTML]="svgContent"></div>
-<div *ngIf="selectedCountryInfo">
-  <h2>Country Details:</h2>
-  <p>Name: {{ selectedCountryInfo.name }}</p>
-  <p>Capital: {{ selectedCountryInfo.capitalCity }}</p>
-  <p>Region: {{ selectedCountryInfo.region }}</p>
-  <p>Income Level: {{ selectedCountryInfo.incomeLevel }}</p>
-  <p>Coordinates: {{ selectedCountryInfo.latitude }}, {{ selectedCountryInfo.longitude }}</p>
+<h1>Sean's World Map</h1>
+<div class="content-container">
+    <div class="svg-container" #svgContainer [innerHTML]="svgContent" *ngIf="svgContent"></div>
+    <div class="country-details" *ngIf="selectedCountryInfo" id="countryDetails">
+    <h2>Country Details:</h2>
+    <p><strong>Name:</strong> {{ selectedCountryInfo.name }}</p>
+    <p><strong>Capital:</strong> {{ selectedCountryInfo.capitalCity }}</p>
+    <p><strong>Region:</strong> {{ selectedCountryInfo.region }}</p>
+    <p><strong>Income Level:</strong> {{ selectedCountryInfo.incomeLevel }}</p>
+    <p><strong>Coordinates:</strong> {{ selectedCountryInfo.latitude }}, {{ selectedCountryInfo.longitude }}</p>
+  </div>
 </div>
