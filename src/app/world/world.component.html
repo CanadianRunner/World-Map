@@ -1,2 +1,9 @@
-<p>world works!</p>
-<div [innerHTML]="svgContent"></div>
+<div #svgContainer [innerHTML]="svgContent"></div>
+<div *ngIf="selectedCountryInfo">
+  <h2>Country Details:</h2>
+  <p>Name: {{ selectedCountryInfo.name }}</p>
+  <p>Capital: {{ selectedCountryInfo.capitalCity }}</p>
+  <p>Region: {{ selectedCountryInfo.region }}</p>
+  <p>Income Level: {{ selectedCountryInfo.incomeLevel }}</p>
+  <p>Coordinates: {{ selectedCountryInfo.latitude }}, {{ selectedCountryInfo.longitude }}</p>
+</div>
