@@ -65,6 +65,44 @@ export class WorldComponent implements OnInit, AfterViewInit {
       }
     }, 0);
   }
+  
+  // addClickListenersToSvgPaths(): void {
+  //   setTimeout(() => {
+  //     const svgElement = this.svgContainer.nativeElement.querySelector('svg');
+  //     if (svgElement) {
+  //       const elements = svgElement.querySelectorAll('path, circle, polygon'); // Add more selectors as needed
+  //       elements.forEach((element: Element) => {
+  //         const countryCode = this.extractCountryCode(element); // Implement this method
+  //         this.renderer.listen(element, 'click', (event: MouseEvent) => {
+  //           if (countryCode) {
+  //             this.onCountrySelect(countryCode, event);
+  //           }
+  //         });
+  //       });
+  //     }
+  //   }, 0);
+  // }
+  
+  extractCountryCode(element: Element): string | null {
+    let currentElement: Element | null = element;
+    while (currentElement && currentElement.nodeName.toLowerCase() !== 'svg') {
+      const countryCode = currentElement.id.toUpperCase();
+      if (this.isValidCountryCode(countryCode)) {
+        return countryCode;
+      }
+      currentElement = currentElement.parentElement;
+    }
+    return null;
+  }
+  
+  isValidCountryCode(countryCode: string): boolean {
+    return this.validCountryCodes.includes(countryCode);
+  }
+
+  isHighIncomeWesternNation(countryId: string): boolean {
+    const highIncomeWesternNations = ['USA', 'CAN', 'GBR', 'AUS', 'NZL', 'DEU', 'FRA', 'ITA', 'JPN', 'CHE', 'NLD', 'SWE', 'NOR', 'DNK', 'AUT', 'BEL', 'FIN', 'IRL', 'LUX'];
+    return highIncomeWesternNations.includes(countryId);
+  }
 
   onCountrySelect(countryCode: string, event: MouseEvent): void {
     if (!this.validCountryCodes.includes(countryCode)) {
@@ -76,13 +114,16 @@ export class WorldComponent implements OnInit, AfterViewInit {
       if (data && data.length > 1 && data[1].length > 0) {
         const countryData = data[1][0];
         this.zone.run(() => {
+          const isDonorNation = this.isHighIncomeWesternNation(countryData.id) || countryData.lendingType.value === 'Not Available' || countryData.incomeLevel.value === 'High income';
+  
           this.selectedCountryInfo = {
             name: countryData.name,
             capitalCity: countryData.capitalCity,
             region: countryData.region.value,
             incomeLevel: countryData.incomeLevel.value,
             longitude: countryData.longitude,
-            latitude: countryData.latitude
+            latitude: countryData.latitude,
+            lendingType: isDonorNation ? 'Donor Nation' : countryData.lendingType.value
           };
           console.log("Updated selectedCountryInfo:", this.selectedCountryInfo);
           this.positionDetailsBox(event);
@@ -104,7 +145,7 @@ export class WorldComponent implements OnInit, AfterViewInit {
       const offsetX = event.clientX - svgRect.left;
       const offsetY = event.clientY - svgRect.top;
       detailsBox.style.position = 'absolute';
-      detailsBox.style.left = `${offsetX + 20}px`;
+      detailsBox.style.left = `${offsetX + 100}px`;
       detailsBox.style.top = `${offsetY}px`;
     }
   }

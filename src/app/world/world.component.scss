@@ -1,19 +1,47 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #e9f5f2;
+  color: #333;
+  margin: 0;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2em;
+  color: #2c7873;
+}
+
+.info-box, .disclaimer {
+  text-align: center;
+  max-width: 80vw;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #dff0ea;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border: 1px solid #b5e7e0;
+  color: #20504f;
+}
+
 .content-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: auto;
   overflow: hidden;
   text-align: center;
 }
 
 .svg-container {
   width: 95vw;
-  max-height: 80vh;
+  max-height: 60vh;
   overflow: auto;
-  border: 1px solid #ccc;
+  border: 1px solid #a2d3c2;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+  background-color: #ffffff;
 }
 
 svg {
@@ -22,9 +50,22 @@ svg {
 }
 
 .country-details {
-  margin-top: 20px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  width: 300px;
+  max-height: 400px;
+  overflow-y: auto;
+  position: fixed;
+  top: 10vh;
+  right: 10vw;
+  padding: 20px;
   background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  border: 1px solid #ccc;
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.country-details.active {
+  opacity: 1;
 }

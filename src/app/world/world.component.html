@@ -1,12 +1,24 @@
-<h1>Sean's World Map</h1>
+<div class="header">
+  <h1>Sean's World Map</h1>
+</div>
+
+<div class="info-box">
+  <p>Welcome to an interactable map of the world. Feel free to scroll around the map and discover information about the countries on planet Earth. Clicking on a country will display the Name, Capital, Region, Income Level, Lending Type, and Coordinates.</p>
+</div>
+
+<div class="disclaimer">
+  <p><em>Please be patient with your clicks! Our development team has found quick repeated calls to the API can bog down the system. Happy learning!</em></p>
+</div>
+
 <div class="content-container">
-    <div class="svg-container" #svgContainer [innerHTML]="svgContent" *ngIf="svgContent"></div>
-    <div class="country-details" *ngIf="selectedCountryInfo" id="countryDetails">
-    <h2>Country Details:</h2>
-    <p><strong>Name:</strong> {{ selectedCountryInfo.name }}</p>
-    <p><strong>Capital:</strong> {{ selectedCountryInfo.capitalCity }}</p>
-    <p><strong>Region:</strong> {{ selectedCountryInfo.region }}</p>
-    <p><strong>Income Level:</strong> {{ selectedCountryInfo.incomeLevel }}</p>
-    <p><strong>Coordinates:</strong> {{ selectedCountryInfo.latitude }}, {{ selectedCountryInfo.longitude }}</p>
+  <div class="svg-container" #svgContainer [innerHTML]="svgContent" *ngIf="svgContent"></div>
+  <div class="country-details" *ngIf="selectedCountryInfo" id="countryDetails" [class.active]="selectedCountryInfo">
+      <h2>Country Details:</h2>
+      <p><strong>Name:</strong> {{ selectedCountryInfo.name }}</p>
+      <p><strong>Capital:</strong> {{ selectedCountryInfo.capitalCity }}</p>
+      <p><strong>Region:</strong> {{ selectedCountryInfo.region }}</p>
+      <p><strong>Income Level:</strong> {{ selectedCountryInfo.incomeLevel }}</p>
+      <p><strong>Lending Type:</strong> {{ selectedCountryInfo.lendingType }}</p>
+      <p><strong>Coordinates:</strong> Latitude: {{ selectedCountryInfo.latitude | number:'1.2-2' }}, Longitude: {{ selectedCountryInfo.longitude | number:'1.2-2' }}</p>
   </div>
 </div>
