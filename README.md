@@ -1,27 +1,55 @@
-# SeansWorldMap
+# Seans World Map
+
+This MVP website was built to provided specifications for my college course D280.
+I was not allowed to use frameworks.
+
+# _JavaScript Programming_
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.2.
 
-## Development server
+#### By _**Sean Keane**_
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+#### WGU Code Review 03/30/2024
 
-## Code scaffolding
+## Technologies Used
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+* HTML
+* CSS
+* TypeScript
+* Angular
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Description
+_This is a project I created for my B.S. in Software Engineering that takes an SVG of a world map and displays relevant information based on user clicks.  It is a single page application with the map centered on the page.   Clicking on a country will display the Name, Capital, Region, Income Level, Lending Type, and Coordinates.  Developing this application helped me grow my understanding of TypeScript, Angular, HTML, and CSS._
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Setup/Installation Requirements
 
-## Running end-to-end tests
+1) Clone this repository to your desktop.
+2) Navigate to the now installed directory and open in your editor of choice.
+3) Open the directory and `cd to seans-world-map`.
+4) Run `ng serve` for a dev server. 
+5) Open your browser of choice and navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## For a visual representation of setup and a successfully built application, please consult the attached Gif.
 
-## Further help
+![BuiltApp](Working-App.gif)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Project can be found at:
+https://github.com/CanadianRunner/World-Map
+
+## Known Bugs
+
+* No known bugs.
+
+## License
+
+If you have any questions or concerns, feel free to contact me at code@sean-keane.com
+
+## SVG World Map Used:
+
+* https://en.m.wikipedia.org/wiki/File:BlankMap-World.svg
+
+*This is licensed under the MIT license*
+
+Copyright (c) 02-14-2022 **_Sean Keane_**

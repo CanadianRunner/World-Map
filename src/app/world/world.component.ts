@@ -38,23 +38,20 @@ export class WorldComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.addClickListenersToSvgPaths();}
+    this.addClickListenersToSvgPaths();
+  }
 
   loadSvg(): void {
-    this.http
-      .get('assets/BlankMap-World.svg', { responseType: 'text' })
-      .subscribe((svgData) => {
-        this.svgContent = this.sanitizer.bypassSecurityTrustHtml(svgData);
-        this.addClickListenersToSvgPaths();
-      });
+    this.http.get('assets/BlankMap-World.svg', { responseType: 'text' }).subscribe(svgData => {
+      this.svgContent = this.sanitizer.bypassSecurityTrustHtml(svgData);
+      this.addClickListenersToSvgPaths();
+    });
   }
 
   fetchAllCountryCodes(): void {
-    this.countryInfoService.getAllCountries().subscribe((data) => {
+    this.countryInfoService.getAllCountries().subscribe(data => {
       if (data && data[1]) {
-        this.validCountryCodes = data[1].map(
-          (country: any) => country.iso2Code
-        );
+        this.validCountryCodes = data[1].map((country: any) => country.iso2Code);
       }
     });
   }
@@ -91,8 +88,7 @@ export class WorldComponent implements OnInit, AfterViewInit {
   isValidCountryCode(countryCode: string): boolean {
     return this.validCountryCodes.includes(countryCode);
   }
-  //This method was created becuase donor nations were shown as "Not Available" in the lendingType field when querying the World Bank API.
-  //Rather than leave those countries with blank fields I created a method to check if the country is a donor nation based on the country code.
+
   isDonorNation(countryId: string): boolean {
     const highIncomeWesternNations = ['USA', 'CAN', 'GBR', 'AUS', 'NZL', 'DEU', 'FRA', 'ITA', 'JPN', 'CHE', 'NLD', 'SWE', 'NOR', 'DNK', 'AUT', 'BEL', 'FIN', 'IRL', 'LUX'];
     return highIncomeWesternNations.includes(countryId);
@@ -105,27 +101,11 @@ export class WorldComponent implements OnInit, AfterViewInit {
     }
 
     this.countryInfoService.getCountryInfo(countryCode).subscribe(
-      (data) => {
+      data => {
         if (data && data.length > 1 && data[1].length > 0) {
           const countryData = data[1][0];
           this.zone.run(() => {
-            const isDonorNation =
-              this.isDonorNation(countryData.id) ||
-              countryData.lendingType.value === 'Not Available' ||
-              countryData.incomeLevel.value === 'High income';
-
-            this.selectedCountryInfo = {
-              name: countryData.name,
-              capitalCity: countryData.capitalCity,
-              region: countryData.region.value,
-              incomeLevel: countryData.incomeLevel.value,
-              longitude: countryData.longitude,
-              latitude: countryData.latitude,
-              lendingType: isDonorNation
-                ? 'Donor Nation'
-                : countryData.lendingType.value,
-            };
-
+            this.selectedCountryInfo = this.processCountryData(countryData);
             this.positionDetailsBox(event);
           });
         } else {
@@ -133,11 +113,24 @@ export class WorldComponent implements OnInit, AfterViewInit {
           this.selectedCountryInfo = null;
         }
       },
-      (error) => {
+      error => {
         console.error('Error fetching country info:', error);
         this.selectedCountryInfo = null;
       }
     );
+  }
+
+  processCountryData(countryData: any): any {
+    const isDonorNation = this.isDonorNation(countryData.id) || countryData.lendingType.value === 'Not Available' || countryData.incomeLevel.value === 'High income';
+    return {
+      name: countryData.name,
+      capitalCity: countryData.capitalCity,
+      region: countryData.region.value,
+      incomeLevel: countryData.incomeLevel.value,
+      longitude: countryData.longitude,
+      latitude: countryData.latitude,
+      lendingType: isDonorNation ? 'Donor Nation' : countryData.lendingType.value,
+    };
   }
 
   positionDetailsBox(event: MouseEvent): void {
