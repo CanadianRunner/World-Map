@@ -89,6 +89,8 @@ export class WorldComponent implements OnInit, AfterViewInit {
     return this.validCountryCodes.includes(countryCode);
   }
 
+  //This method was created becuase donor nations were shown as "Not Available" in the lendingType field when querying the World Bank API.
+  //Rather than leave those countries with blank fields I created a method to check if the country is a donor nation based on the country code.
   isDonorNation(countryId: string): boolean {
     const highIncomeWesternNations = ['USA', 'CAN', 'GBR', 'AUS', 'NZL', 'DEU', 'FRA', 'ITA', 'JPN', 'CHE', 'NLD', 'SWE', 'NOR', 'DNK', 'AUT', 'BEL', 'FIN', 'IRL', 'LUX'];
     return highIncomeWesternNations.includes(countryId);
