@@ -50,6 +50,10 @@ If you have any questions or concerns, feel free to contact me at code@sean-kean
 
 * https://en.m.wikipedia.org/wiki/File:BlankMap-World.svg
 
+## API Used for facts about each country
+
+* https://datahelpdesk.worldbank.org/knowledgebase/articles/898590-country-api-queries
+
 *This is licensed under the MIT license*
 
-Copyright (c) 02-14-2022 **_Sean Keane_**
+Copyright (c) 03-30-2024 **_Sean Keane_**
