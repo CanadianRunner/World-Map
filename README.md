@@ -1,7 +1,6 @@
 # Seans World Map
 
 This MVP website was built to provided specifications for my college course D280.
-I was not allowed to use frameworks.
 
 # _JavaScript Programming_
 
